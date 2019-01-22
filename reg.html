@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+    <title>Login</title>
+    <link href="styles.css" type="text/css" media="screen" rel="stylesheet" />
+    <link href="jquery-ui-1.8.16.custom.css" rel="stylesheet">
+    <script src="jquery-1.6.2.min.js"></script>
+    <script src="jquery-ui-1.8.16.custom.min.js"></script>
+    <script type="text/javascript" src="jquery.keyboard.extension-typing.js"></script>
+    <link type="text/css" href="keyboard.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery.keyboard.js"></script>
+
+    <script>
+    function checkP(){
+        var pass2 = document.getElementById("user_password1").value;
+        var pass1 = document.getElementById("user_password").value;
+
+        if(pass1 != pass2){
+            alert("password not match!");
+            return false;
+        }
+        else if($("#un").val()!="" && $("#pw").val()!="" && $("#pwa").val()!="" && $("#fn").val()!="" && $("#ln").val()!="" && $("#r").val()!=""){
+          return false;
+        }
+		else{
+			return true;
+		}
+      }
+    </script>
+
+    <script>
+          $(document).ready(function(){
+            $("#user_name").keyup(function(){
+              $.ajax({url:"checkreg.php?username="+$("#user_name").val()+"&field=username",success:function(result){
+              $("#un").html(result);}});
+            });
+			$("#user_password").keyup(function(){
+              $.ajax({url:"checkreg.php?password="+$("#user_password").val()+"&field=password",success:function(result){
+              $("#pw").html(result);}});
+            });
+			$("#user_password1").keyup(function(){
+              $.ajax({url:"checkreg.php?password1="+$("#user_password1").val()+"&field=password1",success:function(result){
+              $("#pwa").html(result);}});
+            });
+			$("#firstname").keyup(function(){
+              $.ajax({url:"checkreg.php?firstname="+$("#firstname").val()+"&field=firstname",success:function(result){
+              $("#fn").html(result);}});
+            });
+			$("#lastname").keyup(function(){
+              $.ajax({url:"checkreg.php?lastname="+$("#lastname").val()+"&field=lastname",success:function(result){
+              $("#ln").html(result);}});
+            });
+			$("#role").keyup(function(){
+              $.ajax({url:"checkreg.php?role="+$("#role").val()+"&field=role",success:function(result){
+              $("#r").html(result);}});
+            });
+          });
+    </script>
+
+</head>
+<body id="login" style="margin-left:32%; margin-top:4%">
+    <div id="wrappertop">
+    </div>
+    <div id="wrapper">
+        <div id="content">
+            <div id="header">
+                <h1>
+                    <a href="">
+                       <!--����Logo <img src="logo.png"   height="50"  width="100"  alt="logo">--></a></h1>
+            </div>
+            <div id="darkbanner" class="banner320">
+                <h2>
+                    Registration  System</h2>
+            </div>
+            <div id="darkbannerwrap">
+            </div>
+            <form name="form1" method="post" action="reg.php">
+            <fieldset class="form">
+                <p>
+                    <label class="loginlabel" for="user_name">
+                        Username:</label>
+                    <input class="logininput ui-keyboard-input ui-widget-content ui-corner-all" name="user_name"
+                        id="user_name" type="text" placeholder="Please type your username" maxlength="16"/><div id="un"></div>
+                </p>
+                <p>
+                    <label class="loginlabel" for="user_password">
+                        Password:</label>
+                    <span>
+                        <input class="logininput"   name="user_password" id="user_password" type="password" placeholder="Please type your password" maxlength="16"/></span>
+						<div id="pw"></div>
+                </p>
+				<p>
+                    <label class="loginlabel" for="user_password">
+                        Password Again:</label>
+                    <span>
+                        <input class="logininput ui-keyboard-input ui-widget-content ui-corner-all"   name="user_password1" id="user_password1" type="password" placeholder="Please type your password again" maxlength="16"/></span>
+						<div id="pwa"></div>
+                </p>
+				<p>
+                    <label class="loginlabel" for="user_name">
+                        Firstname:</label>
+                    <input class="logininput ui-keyboard-input ui-widget-content ui-corner-all" name="firstname"
+                        id="firstname" type="text" value="" maxlength="12" placeholder="Please type your firstname" maxlength="16"/>
+						<div id="fn"></div>
+                </p>
+				<p>
+                    <label class="loginlabel" for="user_name">
+                        Lastname:</label>
+                    <input class="logininput ui-keyboard-input ui-widget-content ui-corner-all" name="lastname"
+                        id="lastname" type="text" value=""  maxlength="12" placeholder="Please type your lastname" maxlength="16"/>
+						<div id="ln"></div>
+                </p>
+				<p>
+                    <label class="loginlabel" for="user_name">
+                        Role:</label>
+                    <input class="logininput ui-keyboard-input ui-widget-content ui-corner-all" name="role"
+                        id="role" type="text" value="" placeholder="Please type your position in company"maxlength="16"/>
+						<div id="r"></div>
+                </p>
+				<p>
+                    <label class="loginlabel" for="user_name">
+                        Gender:</label>
+					<input type="radio" name="field＿name" value="Male" ><b style="font-size:23px">Male</b>&nbsp&nbsp&nbsp&nbsp&nbsp
+					<input type="radio" name="field＿name" value="Female" ><b style="font-size:23px">Female</b>
+                </p>
+				<br>
+                <!-- <ul id="forgottenpassword">
+                    <li class="boldtext">|</li>
+                    <li>
+                        <input id="remember" type="checkbox" name="remember" id="rememberMe"><label for="rememberMe">Remember me</label></li>
+					<li class="boldtext">|</li>
+				</ul> -->
+                <button id="regbtn" type="submit" class="positive" name="Submit" style="margin-left:170px;" onclick="return checkP();">Register</button>
+            </fieldset>
+
+			</form>
+        </div>
+    </div>
+    <div id="wrapperbottom_branding">
+
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#user_password').keyboard({
+                openOn: null,
+                stayOpen: true,
+                layout: 'qwerty'
+            }).addTyping();
+            $('#passwd').click(function() {
+                $('#user_password').getkeyboard().reveal();
+            })
+
+            $(".logininput").blur(function() {
+                if ($(this).val() == "") {
+                    $(this).css("border-color", "red");
+                                    }
+                else
+                    $(this).css("border-color", "#D9D6C4");
+            })
+
+            $("#loginbtn").click(function() {
+                var k = 0;
+                var ajaxhtml = "";
+                $(".logininput").each(function(i, obj) {
+                    if ($(obj).val().trim() == "") {
+                        k++;
+                        $(this).css("border-color", "red");
+                        $(this).focus();
+                        return false;
+                    }
+                });
+                if (k != 0) return;
+                ajaxhtml = $("#loginbtn").html();
+                $("#loginbtn").html("Loading....  <img src='loading.gif' alt='Announcement' /> ");
+                $("#loginbtn").attr("disabled", "disabled");
+
+            })
+        });
+
+    </script>
+</body>
