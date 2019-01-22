@@ -18,5 +18,9 @@ Deployment Details:
   
     Username        Password
     root            Group62018
+    
+    
+    
+Contributed by Yufan Kang, Jesse Ross, Shengzhe Zhao, Sajan Chopra
 
   
